@@ -1,0 +1,5 @@
+celery
+pika
+requests
+beautifulsoup4
+flower

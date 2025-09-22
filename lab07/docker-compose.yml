@@ -1,0 +1,29 @@
+services:
+  jobmanager:
+    image: pyflink:latest
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    volumes:
+      - ./data:/opt/flink/data
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+
+        
+  taskmanager:
+    image: pyflink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    volumes:
+      - ./data:/opt/flink/data
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 4
+
+
+

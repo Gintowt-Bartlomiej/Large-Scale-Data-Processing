@@ -1,0 +1,9 @@
+__pycache__
+*.pyc
+.tox
+.pytest_cache
+data
+data_plot.py
+datasets
+lr.egg-info
+venv

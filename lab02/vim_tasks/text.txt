@@ -1,0 +1,3 @@
+Vim jest obecnie jednym z najbardziej popularnych edytorów tekstów stosowany przez programistów, jak i również administratorów systemów. 
+Ze wspomnianego edytora korzystamy w wierszu poleceń i w odróżnieniu od edytorów konsolowych jak na przykład nano korzystanie z niego jest dość złożonym procesem. 
+W celu wykonania niektórych czynności wymaga wprowadzenia odpowiedniej komendy lub kombinacji klawiszy.

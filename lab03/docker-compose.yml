@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  content:
+    image: nginx:latest
+    container_name: content
+    volumes:
+      - ./test.html:/usr/share/nginx/html/index.html
+    ports:
+      - "8080:80"
+    restart: always
+    networks:
+      - my_network
+
+  load-balancer:
+    image: nginx:latest
+    container_name: load-balancer
+    volumes:
+      - ./load-balancer.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - content
+    links:
+      - content
+    networks:
+      - my_network
+
+  checker:
+    image: curlimages/curl:latest
+    container_name: checker
+    entrypoint: ["sh", "-c", "while true; do curl -s http://load-balancer; sleep 5; done"]  # co 5 sekund wykonuje zapytanie do load balancera
+    restart: always
+    depends_on:
+      - load-balancer
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
